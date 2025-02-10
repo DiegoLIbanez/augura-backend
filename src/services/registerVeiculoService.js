@@ -12,7 +12,10 @@ const getAll = async () => {
   try {
     return await registerVehicleModel
       .find({})
-      .populate("person")
+      .populate({
+        path: "person",
+        populate: [{ path: "role" }, { path: "status" }],
+      })
       .populate({
         path: "vehicle",
         populate: [{ path: "typeVehicle" }, { path: "company" }],
