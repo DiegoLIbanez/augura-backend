@@ -13,15 +13,18 @@ const getAll = async () => {
     return await registerVehicleModel
       .find({})
       .populate("person")
-      .populate("vehicle")
+      .populate({
+        path: "vehicle",
+        populate: [{ path: "typeVehicle" }, { path: "company" }],
+      })
       .populate("statusDesinfection")
       .populate("typeBurden")
-      .populate("typeCommunal");
+      .populate("typeCommunal")
+      .populate("typeInput");
   } catch (error) {
     throw error;
   }
 };
-
 const create = async (body) => {
   try {
     return await registerVehicleModel.create(body);

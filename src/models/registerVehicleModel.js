@@ -33,6 +33,12 @@ const ModelSchema = new Schema(
         type: Schema.Types.ObjectId,
       },
     ],
+    typeInput: [
+      {
+        ref: "typeInput",
+        type: Schema.Types.ObjectId,
+      },
+    ],
     initialDestination: String,
     endDestination: String,
   },

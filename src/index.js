@@ -29,6 +29,7 @@ const v1consumptionRoutes = require("./routes/consumptionRoutes");
 const v1personRoutes = require("./routes/personRoutes");
 const v1registerVeiculoServiceRoutes = require("./routes/registerVeiculoServiceRoutes");
 const v1vehicleRoutes = require("./routes/vehicleRoutes");
+const v1typeInputRoutes = require("./routes/typeInputRoutes");
 
 //Version routes
 //app.use("/api/v1/user/", v1UsersRoutes);
@@ -44,6 +45,7 @@ app.use("/api/v1/consumption/", v1consumptionRoutes);
 app.use("/api/v1/person/", v1personRoutes);
 app.use("/api/v1/register-vehicle/", v1registerVeiculoServiceRoutes);
 app.use("/api/v1/vehicle/", v1vehicleRoutes);
+app.use("/api/v1/type-input/", v1typeInputRoutes);
 
 // Start server
 app.listen(PORT, () => {
