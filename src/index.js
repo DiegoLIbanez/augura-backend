@@ -30,10 +30,11 @@ const v1personRoutes = require("./routes/personRoutes");
 const v1registerVeiculoServiceRoutes = require("./routes/registerVeiculoServiceRoutes");
 const v1vehicleRoutes = require("./routes/vehicleRoutes");
 const v1typeInputRoutes = require("./routes/typeInputRoutes");
+const v1LoginRoutes = require('./routes/loginRoutes');
 
 //Version routes
 //app.use("/api/v1/user/", v1UsersRoutes);
-//app.use("/api/v1/login/", v1LoginRoutes);
+app.use("/api/v1/login/", v1LoginRoutes);
 app.use("/api/v1/company/", v1companyRoutes);
 app.use("/api/v1/role/", v1roleRoutes);
 app.use("/api/v1/status-desinfection/", v1statusDesinfectionRoutes);

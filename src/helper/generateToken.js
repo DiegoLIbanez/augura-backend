@@ -4,7 +4,8 @@ const tokenSign = async (user) => { //TODO: Genera Token
     return jwt.sign(
         {
             _id: user._id, //TODO: <---
-            user: user.user
+            user: user.user,
+            role:user.role.name
         }, //TODO: Payload ! Carga útil
         process.env.JWT_SECRET || '123456', //TODO ENV 'secretkey'
         {

@@ -1,4 +1,6 @@
 const personService = require("../services/personService");
+const { encrypt } = require('../helper/handleBcrypt');
+
 
 const getId = async (req, res) => {
   try {
@@ -48,12 +50,10 @@ const getAll = async (req, res) => {
 const create = async (req, res) => {
   try {
     const body = req.body;
+    const passwordHash = await encrypt(body.password);
+    body.password = passwordHash;
     const response = await personService.create(body);
-    res.send({
-      statusCode: 201,
-      message: "Registrado con exito",
-      data: response,
-    });
+    res.send({statusCode:201,message:'Registrado con exito',data:response});
   } catch (error) {
     console.log(error);
     res.send({ statusCode: 400, data: error });
