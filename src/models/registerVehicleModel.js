@@ -9,6 +9,12 @@ const ModelSchema = new Schema(
         type: Schema.Types.ObjectId,
       },
     ],
+    driver: [
+      {
+        ref: "person",
+        type: Schema.Types.ObjectId,
+      },
+    ],
     vehicle: [
       {
         ref: "vehicle",

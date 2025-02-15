@@ -30,6 +30,10 @@ const getAll = async () => {
         populate: [{ path: "role" }, { path: "status" }],
       })
       .populate({
+        path: "driver",
+        populate: [{ path: "role" }, { path: "status" }],
+      })
+      .populate({
         path: "vehicle",
         populate: [{ path: "typeVehicle" }, { path: "company" }],
       })
