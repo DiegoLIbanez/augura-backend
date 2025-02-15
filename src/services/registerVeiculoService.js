@@ -2,7 +2,20 @@ const registerVehicleModel = require("../models/registerVehicleModel");
 
 const getId = async (_id) => {
   try {
-    return await registerVehicleModel.find({ _id });
+    return await registerVehicleModel
+      .find({ _id })
+      .populate({
+        path: "person",
+        populate: [{ path: "role" }, { path: "status" }],
+      })
+      .populate({
+        path: "vehicle",
+        populate: [{ path: "typeVehicle" }, { path: "company" }],
+      })
+      .populate("statusDesinfection")
+      .populate("typeBurden")
+      .populate("typeCommunal")
+      .populate("typeInput");
   } catch (error) {
     throw error;
   }
