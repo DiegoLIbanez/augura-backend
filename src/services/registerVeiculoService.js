@@ -45,6 +45,7 @@ const getAll = async () => {
     throw error;
   }
 };
+
 const create = async (body) => {
   try {
     return await registerVehicleModel.create(body);

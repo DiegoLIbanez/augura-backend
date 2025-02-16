@@ -16,6 +16,14 @@ const getAll = async () => {
   }
 };
 
+const getAllDriver = async (_id) => {
+  try {
+    return await personModel.find({role:_id});
+  } catch (error) {
+    throw error;
+  }
+};
+
 const create = async (body) => {
   try {
     return await personModel.create(body);
@@ -40,4 +48,4 @@ const deleteId = async (_id) => {
   }
 };
 
-module.exports = { getId, getAll, create, update, deleteId };
+module.exports = { getId, getAll, getAllDriver , create, update, deleteId };

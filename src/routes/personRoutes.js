@@ -4,6 +4,7 @@ const personController = require("../controllers/personController");
 
 router
   .get("/", personController.getAll)
+  .get("/driver/:_id", personController.getAllDriver)
   .get("/:_id", personController.getId)
   .post("/", personController.create)
   .put("/:_id", personController.update)

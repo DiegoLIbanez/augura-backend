@@ -1,7 +1,6 @@
 const personService = require("../services/personService");
 const { encrypt } = require('../helper/handleBcrypt');
 
-
 const getId = async (req, res) => {
   try {
     const { _id } = req.params;
@@ -28,6 +27,29 @@ const getId = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const response = await personService.getAll();
+    if (response.length > 0) {
+      return res.send({
+        statusCode: 200,
+        message: "Registros encontrados",
+        data: response,
+      });
+    } else {
+      return res.send({
+        statusCode: 404,
+        message: "No hay informacion",
+        data: response,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send({ statusCode: 400, data: error });
+  }
+};
+
+const getAllDriver = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const response = await personService.getAllDriver(_id);
     if (response.length > 0) {
       return res.send({
         statusCode: 200,
@@ -100,4 +122,4 @@ const deleteId = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getId, create, update, deleteId };
+module.exports = { getAll, getId, create, update, deleteId,getAllDriver };
