@@ -6,7 +6,7 @@ const ModelSchema = new Schema(
     waterConsumption: String,
     disinfectantConsumption: String,
     dateNow: { type: Date, default: Date.now },
-    comunal: [
+    typeCommunal: [
       {
         type: Schema.Types.ObjectId,
         ref: "typeCommunal",

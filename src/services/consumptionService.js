@@ -10,7 +10,7 @@ const getId = async (_id) => {
 
 const getAll = async () => {
   try {
-    return await consumptionModel.find({}).populate("comunal");
+    return await consumptionModel.find({}).populate("typeCommunal");
   } catch (error) {
     throw error;
   }
