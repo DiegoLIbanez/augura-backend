@@ -3,7 +3,10 @@ var Schema = mongoose.Schema;
 
 const ModelSchema = new Schema(
   {
-    plate: String,
+    plate: {
+      type: String,
+      unique: true,
+    },
     photoVehicle: String,
     typeVehicle: [
       {

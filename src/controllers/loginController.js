@@ -28,6 +28,7 @@ const login = async (req, res) => {
         const tokenSession = await tokenSign(dataUser);
 
         return res.send({statusCode:200,message:'usuario activo',data:{
+            id:dataUser._id,
             user:dataUser.user,
             role:dataUser.role.description,
             token:tokenSession
