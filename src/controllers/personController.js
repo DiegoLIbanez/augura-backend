@@ -1,6 +1,29 @@
 const personService = require("../services/personService");
 const { encrypt } = require('../helper/handleBcrypt');
 
+const getUserName = async (req, res) => {
+  try {
+    const body = req.body;
+    const response = await personService.getUserName(body);
+    if (response.length > 0) {
+      return res.send({
+        statusCode: 200,
+        message: "Registros encontrados",
+        data: response,
+      });
+    } else {
+      return res.send({
+        statusCode: 404,
+        message: "No hay informacion",
+        data: _id,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send({ statusCode: 400, data: error });
+  }
+}
+
 const getId = async (req, res) => {
   try {
     const { _id } = req.params;
@@ -122,4 +145,4 @@ const deleteId = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getId, create, update, deleteId,getAllDriver };
+module.exports = { getAll, getUserName , getId, create, update, deleteId,getAllDriver };

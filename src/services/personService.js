@@ -48,4 +48,4 @@ const deleteId = async (_id) => {
   }
 };
 
-module.exports = { getId, getAll, getAllDriver , create, update, deleteId };
+module.exports = { getId, getAll, getAllDriver, create, update, deleteId };
