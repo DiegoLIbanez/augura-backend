@@ -3,15 +3,15 @@ var Schema = mongoose.Schema;
 
 const ModelSchema = new Schema(
   {
-    person: [
+    user: [
       {
-        ref: "person",
+        ref: "user",
         type: Schema.Types.ObjectId,
       },
     ],
     driver: [
       {
-        ref: "person",
+        ref: "user",
         type: Schema.Types.ObjectId,
       },
     ],
@@ -55,4 +55,4 @@ const ModelSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("registerVeiculo", ModelSchema);
+module.exports = mongoose.model("registerDesinfection", ModelSchema);

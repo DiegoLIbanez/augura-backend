@@ -1,8 +1,8 @@
-const personModel = require("../models/personModel");
+const userModel = require("../models/userModel");
 
 const getId = async (_id) => {
   try {
-    return await personModel.find({ _id });
+    return await userModel.find({ _id });
   } catch (error) {
     throw error;
   }
@@ -10,7 +10,7 @@ const getId = async (_id) => {
 
 const getAll = async () => {
   try {
-    return await personModel.find({}).populate("role").populate("status");
+    return await userModel.find({}).populate("role").populate("status");
   } catch (error) {
     throw error;
   }
@@ -18,7 +18,7 @@ const getAll = async () => {
 
 const getAllDriver = async (_id) => {
   try {
-    return await personModel.find({role:_id});
+    return await userModel.find({role:_id});
   } catch (error) {
     throw error;
   }
@@ -26,7 +26,7 @@ const getAllDriver = async (_id) => {
 
 const create = async (body) => {
   try {
-    return await personModel.create(body);
+    return await userModel.create(body);
   } catch (error) {
     throw error;
   }
@@ -34,7 +34,7 @@ const create = async (body) => {
 
 const update = async (_id, body) => {
   try {
-    return await personModel.findByIdAndUpdate(_id, body);
+    return await userModel.findByIdAndUpdate(_id, body);
   } catch (error) {
     throw error;
   }
@@ -42,7 +42,7 @@ const update = async (_id, body) => {
 
 const deleteId = async (_id) => {
   try {
-    return await personModel.findByIdAndDelete(_id);
+    return await userModel.findByIdAndDelete(_id);
   } catch (error) {
     throw error;
   }

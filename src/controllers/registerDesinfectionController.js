@@ -1,9 +1,9 @@
-const registerVeiculoService = require("../services/registerVeiculoService");
+const registerDesinfectionService = require("../services/registerDesinfectionService");
 
 const getId = async (req, res) => {
   try {
     const { _id } = req.params;
-    const response = await registerVeiculoService.getId(_id);
+    const response = await registerDesinfectionService.getId(_id);
     if (response.length > 0) {
       return res.send({
         statusCode: 200,
@@ -25,7 +25,7 @@ const getId = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const response = await registerVeiculoService.getAll();
+    const response = await registerDesinfectionService.getAll();
     if (response.length > 0) {
       return res.send({
         statusCode: 200,
@@ -48,7 +48,7 @@ const getAll = async (req, res) => {
 const create = async (req, res) => {
   try {
     const body = req.body;
-    const response = await registerVeiculoService.create(body);
+    const response = await registerDesinfectionService.create(body);
     res.send({
       statusCode: 201,
       message: "Registrado con exito",
@@ -63,7 +63,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { _id } = req.params;
-    const response = await registerVeiculoService.update(_id, req.body);
+    const response = await registerDesinfectionService.update(_id, req.body);
     if (response === null) {
       return res.send({ statusCode: 404, message: "No encontrado", data: _id });
     }
@@ -81,7 +81,7 @@ const update = async (req, res) => {
 const deleteId = async (req, res) => {
   try {
     const { _id } = req.params;
-    const response = await registerVeiculoService.deleteId(_id);
+    const response = await registerDesinfectionService.deleteId(_id);
     if (response === null) {
       return res.send({
         statusCode: 404,

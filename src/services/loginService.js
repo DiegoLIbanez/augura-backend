@@ -1,8 +1,11 @@
-const personModel = require('../models/personModel');
+const userModel = require('../models/userModel');
 
 const userExisting = async (user) => {
     try {
-        return await personModel.findOne({user:user}).populate('role').populate('status'); 
+        return await userModel
+        .findOne({user:user})
+        .populate('role')
+        .populate('status'); 
     } catch (error) {
         console.log(error);        
     }

@@ -1,11 +1,11 @@
-const registerVehicleModel = require("../models/registerVehicleModel");
+const registerDesinfectionModel = require("../models/registerDesinfectionModel");
 
 const getId = async (_id) => {
   try {
-    return await registerVehicleModel
+    return await registerDesinfectionModel
       .find({ _id })
       .populate({
-        path: "person",
+        path: "user",
         populate: [{ path: "role" }, { path: "status" }],
       })
       .populate({
@@ -23,10 +23,10 @@ const getId = async (_id) => {
 
 const getAll = async () => {
   try {
-    return await registerVehicleModel
+    return await registerDesinfectionModel
       .find({})
       .populate({
-        path: "person",
+        path: "user",
         populate: [{ path: "role" }, { path: "status" }],
       })
       .populate({
@@ -48,7 +48,7 @@ const getAll = async () => {
 
 const create = async (body) => {
   try {
-    return await registerVehicleModel.create(body);
+    return await registerDesinfectionModel.create(body);
   } catch (error) {
     throw error;
   }
@@ -56,7 +56,7 @@ const create = async (body) => {
 
 const update = async (_id, body) => {
   try {
-    return await registerVehicleModel.findByIdAndUpdate(_id, body);
+    return await registerDesinfectionModel.findByIdAndUpdate(_id, body);
   } catch (error) {
     throw error;
   }
@@ -64,7 +64,7 @@ const update = async (_id, body) => {
 
 const deleteId = async (_id) => {
   try {
-    return await registerVehicleModel.findByIdAndDelete(_id);
+    return await registerDesinfectionModel.findByIdAndDelete(_id);
   } catch (error) {
     throw error;
   }

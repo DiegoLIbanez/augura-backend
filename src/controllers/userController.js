@@ -1,11 +1,33 @@
-// const { httpError,messagePersonalized } = require('../helpers/handleMessage');
-const companyService = require("../services/companyService");
-const { encrypt } = require("../helper/handleBcrypt");
+const userService = require("../services/userService");
+const { encrypt } = require('../helper/handleBcrypt');
+
+const getUserName = async (req, res) => {
+  try {
+    const body = req.body;
+    const response = await userService.getUserName(body);
+    if (response.length > 0) {
+      return res.send({
+        statusCode: 200,
+        message: "Registros encontrados",
+        data: response,
+      });
+    } else {
+      return res.send({
+        statusCode: 404,
+        message: "No hay informacion",
+        data: _id,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send({ statusCode: 400, data: error });
+  }
+}
 
 const getId = async (req, res) => {
   try {
     const { _id } = req.params;
-    const response = await companyService.getId(_id);
+    const response = await userService.getId(_id);
     if (response.length > 0) {
       return res.send({
         statusCode: 200,
@@ -27,7 +49,7 @@ const getId = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const response = await companyService.getAll();
+    const response = await userService.getAll();
     if (response.length > 0) {
       return res.send({
         statusCode: 200,
@@ -38,7 +60,30 @@ const getAll = async (req, res) => {
       return res.send({
         statusCode: 404,
         message: "No hay informacion",
-        data: _id,
+        data: response,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send({ statusCode: 400, data: error });
+  }
+};
+
+const getAllDriver = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const response = await userService.getAllDriver(_id);
+    if (response.length > 0) {
+      return res.send({
+        statusCode: 200,
+        message: "Registros encontrados",
+        data: response,
+      });
+    } else {
+      return res.send({
+        statusCode: 404,
+        message: "No hay informacion",
+        data: response,
       });
     }
   } catch (error) {
@@ -52,13 +97,9 @@ const create = async (req, res) => {
     const body = req.body;
     const passwordHash = await encrypt(body.password);
     body.password = passwordHash;
-    const response = await companyService.create(body);
-    res.send({
-      statusCode: 201,
-      message: "Registrado con exito",
-      data: response,
-    });
-  } catch (e) {
+    const response = await userService.create(body);
+    res.send({statusCode:201,message:'Registrado con exito',data:response});
+  } catch (error) {
     console.log(error);
     res.send({ statusCode: 400, data: error });
   }
@@ -67,7 +108,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { _id } = req.params;
-    const response = await companyService.update(_id, req.body);
+    const response = await userService.update(_id, req.body);
     if (response === null) {
       return res.send({ statusCode: 404, message: "No encontrado", data: _id });
     }
@@ -85,7 +126,7 @@ const update = async (req, res) => {
 const deleteId = async (req, res) => {
   try {
     const { _id } = req.params;
-    const response = await companyService.deleteId(_id);
+    const response = await userService.deleteId(_id);
     if (response === null) {
       return res.send({
         statusCode: 404,
@@ -104,4 +145,4 @@ const deleteId = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getId, create, update, deleteId };
+module.exports = { getAll, getUserName , getId, create, update, deleteId,getAllDriver };
