@@ -28,6 +28,7 @@ const login = async (req, res) => {
 
     //JWT
     const tokenSession = await tokenSign(dataUser);
+    console.log(tokenSession);
     return res
       .status(200)
       .json({ message: "Usuario activo", data: { token: tokenSession } });
