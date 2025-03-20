@@ -1,28 +1,31 @@
-const jwt = require('jsonwebtoken') //TODO : 😎
+const jwt = require("jsonwebtoken"); //TODO : 😎
+require("dotenv").config(); //TODO: Cargar variables de entorno
 
-const tokenSign = async (user) => { //TODO: Genera Token
-    return jwt.sign(
-        {
-            user: user.user,
-            role:user.role.name
-        }, //TODO: Payload ! Carga útil
-        process.env.JWT_SECRET || '123456', //TODO ENV 'secretkey'
-        {
-            expiresIn: "45m", //TODO tiempo de vida
-        }
-    );
-}
+const tokenSign = async (user) => {
+  //TODO: Genera Token
+  return jwt.sign(
+    {
+      user: user.user,
+      role: user.role.name,
+    }, //TODO: Payload ! Carga útil
+    process.env.JWT_SECRET || "123456", //TODO ENV 'secretkey'
+    {
+      expiresIn: "45m", //TODO tiempo de vida
+    }
+  );
+};
 
 const verifyToken = async (token) => {
-    try {
-        return jwt.verify(token, process.env.JWT_SECRET || '123456')
-    } catch (e) {
-        return null
-    }
-}
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET || "123456");
+  } catch (e) {
+    return null;
+  }
+};
 
-const decodeSign = (token) => { //TODO: Verificar que el token sea valido y correcto
-    return jwt.decode(token, null)
-}
+const decodeSign = (token) => {
+  //TODO: Verificar que el token sea valido y correcto
+  return jwt.decode(token, null);
+};
 
-module.exports = { tokenSign, decodeSign, verifyToken }
+module.exports = { tokenSign, decodeSign, verifyToken };
